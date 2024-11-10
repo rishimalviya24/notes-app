@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Completed Tasks</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body class="bg-zinc-800 text-black font-sans h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-1/5 bg-zinc-900 p-6 flex flex-col">
+    <!-- Sidebar content similar to previous code -->
+  </aside>
+
+  <!-- Main Content -->
+  <main class="w-4/5 p-8 bg-black">
+    <h2 class="text-2xl text-blue-500 mb-6">Completed Tasks</h2>
+
+    <!-- Back to All Tasks Link -->
+    <a href="/" class="text-blue-500 hover:text-blue-600 mb-4 inline-block">
+      <button class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600">
+        Back to All Tasks
+      </button>
+    </a>
+
+    <!-- Task List Area -->
+    <div class="space-y-4 mt-6" id="taskList">
+      <% tasks.forEach(task => { %>
+        <div class="flex gap-3 items-center bg-gray-800 p-2 rounded-md">
+          <!-- Task completion checkbox -->
+          <form action="/complete/<%= task.id %>" method="post" style="display:inline;">
+            <button type="submit" style="background:none; border:none;">
+              <i class="ri-checkbox-circle-line text-blue-500"></i>
+            </button>
+          </form>
+
+          <span class="text-white"><%= task.title %></span>
+
+          <!-- Delete Button -->
+          <form action="/delete/<%= task.id %>" method="post" class="ml-auto">
+            <button type="submit" class="text-red-500 hover:text-red-600">
+              <i class="ri-delete-bin-line"></i>
+            </button>
+          </form>
+
+          <!-- Edit Button -->
+          <form action="/edit/<%= task.id %>" method="get">
+            <button type="submit" class="text-blue-500 hover:text-blue-600">
+              <i class="ri-edit-line"></i>
+            </button>
+          </form>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+</body>
+</html>
